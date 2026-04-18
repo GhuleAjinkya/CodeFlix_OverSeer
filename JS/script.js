@@ -2,8 +2,11 @@
 const toggleBtn = document.getElementById('themeToggle');
 const body = document.body;
 
-// Default is dark — only apply light if explicitly saved
-if (localStorage.getItem('theme') === 'light') {
+// Default is light — only apply dark if explicitly saved
+if (localStorage.getItem('theme') === 'dark') {
+  body.classList.remove('light-mode');
+  if (toggleBtn) toggleBtn.textContent = '🌙';
+} else {
   body.classList.add('light-mode');
   if (toggleBtn) toggleBtn.textContent = '☀️';
 }

@@ -4,9 +4,21 @@
 
 /* ── Theme ── */
 const tbtn = document.getElementById('themeToggle');
+
+// Default is light mode — add R_lm unless explicitly saved as dark
+if (localStorage.getItem('recTheme') === 'dark') {
+  document.body.classList.remove('R_lm');
+  tbtn.textContent = '🌙';
+} else {
+  document.body.classList.add('R_lm');
+  tbtn.textContent = '☀️';
+}
+
 tbtn.addEventListener('click', () => {
   document.body.classList.toggle('R_lm');
-  tbtn.textContent = document.body.classList.contains('R_lm') ? '☀️' : '🌙';
+  const isLight = document.body.classList.contains('R_lm');
+  tbtn.textContent = isLight ? '☀️' : '🌙';
+  localStorage.setItem('recTheme', isLight ? 'light' : 'dark');
 });
 
 /* ── Profile Dropdown ── */

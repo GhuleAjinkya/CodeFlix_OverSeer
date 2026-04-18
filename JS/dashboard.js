@@ -4,9 +4,21 @@
 
 /* ── Theme ── */
 const tbtn = document.getElementById('themeToggle');
+
+// Default is light mode — add D_lm unless explicitly saved as dark
+if (localStorage.getItem('dashTheme') === 'dark') {
+  document.body.classList.remove('D_lm');
+  tbtn.textContent = '🌙';
+} else {
+  document.body.classList.add('D_lm');
+  tbtn.textContent = '☀️';
+}
+
 tbtn.addEventListener('click', () => {
   document.body.classList.toggle('D_lm');
-  tbtn.textContent = document.body.classList.contains('D_lm') ? '☀️' : '🌙';
+  const isLight = document.body.classList.contains('D_lm');
+  tbtn.textContent = isLight ? '☀️' : '🌙';
+  localStorage.setItem('dashTheme', isLight ? 'light' : 'dark');
   redraw();
 });
 
