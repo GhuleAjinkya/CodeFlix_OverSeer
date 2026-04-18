@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Risk Analysis | AI Project Intelligence</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<header class="P_nb">
+  <a href="dashboard.html" class="P_logo">AI Project Intelligence</a>
+  <nav class="P_navlinks">
+    <a href="dashboard.html"           class="P_navlink">Dashboard</a>
+    <a href="project-health.html"      class="P_navlink">Project Health</a>
+    <a href="risk-analysis.html"       class="P_navlink P_navactive">Risk Analysis</a>
+    <a href="developer-analytics.html" class="P_navlink">Developers</a>
+    <a href="issues.html"              class="P_navlink">Issues</a>
+    <a href="developer-recommendation.html" class="P_navlink">AI Recommendations</a>
+  </nav>
+  <div class="P_nbr">
+    <button class="P_tbtn" id="themeToggle">🌙</button>
+    <div class="P_pfwrap">
+      <div class="P_av" id="avatarBtn">AK</div>
+      <div class="P_dd" id="profileDropdown">
+        <div class="P_ddhd"><div class="P_ddav">AK</div><div><span class="P_ddname">Alex Kumar</span><span class="P_ddemail">alex.k@projectintel.ai</span></div></div>
+        <div class="P_ddsep"></div>
+        <a href="#"          class="P_ddlink">⚙️&nbsp; Settings</a>
+        <a href="#"          class="P_ddlink">👤&nbsp; My Profile</a>
+        <div class="P_ddsep"></div>
+        <a href="login.html" class="P_ddlink P_ddout">🚪&nbsp; Logout</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="P_pg">
+
+  <div class="P_bc">
+    <a href="dashboard.html">Dashboard</a>
+    <span>/</span><span>Risk Analysis</span>
+  </div>
+
+  <div class="P_phd">
+    <div>
+      <h1 class="P_ptitle">⚠️ Risk Analysis</h1>
+      <p class="P_psub">AI-driven risk prediction covering deadline pressure, team bottlenecks, and code vulnerabilities.</p>
+    </div>
+    <div class="P_phdacts">
+      <button class="P_btn P_btn-ghost">📤 Export Report</button>
+      <button class="P_btn" id="refreshBtn">🔄 Refresh AI</button>
+    </div>
+  </div>
+
+  <!-- Risk level pills -->
+  <div class="P_pills">
+    <div class="P_pill"><span class="P_pilldot P_cy"></span><b>Medium</b><span>Overall Risk</span></div>
+    <div class="P_pill"><span class="P_pilldot P_cr"></span><b>3</b><span>Critical Factors</span></div>
+    <div class="P_pill"><span class="P_pilldot P_cy"></span><b>4</b><span>Warnings</span></div>
+    <div class="P_pill"><span class="P_pilldot P_cg"></span><b>78%</b><span>On-track Tasks</span></div>
+  </div>
+
+  <!-- Risk chart + donut -->
+  <div class="P_grid21">
+
+    <div class="P_card" style="animation-delay:0.05s">
+      <div class="P_cardhd">
+        <span class="P_cardtitle">📉 Risk Score Prediction</span>
+        <span class="P_pill2">Next 14 days</span>
+      </div>
+      <div class="P_chbox-lg"><canvas id="riskTrendChart"></canvas></div>
+    </div>
+
+    <div class="P_card" style="animation-delay:0.1s">
+      <div class="P_cardtitle">🧩 Risk Distribution</div>
+      <div style="height:200px;position:relative"><canvas id="riskDonut"></canvas></div>
+      <div style="margin-top:1rem">
+        <div class="P_row">
+          <span class="P_dot P_dr" style="margin-top:2px"></span>
+          <div class="P_rowinfo"><span class="P_rowh">Deadline Risk</span></div>
+          <span class="P_bdg P_bdgr">38%</span>
+        </div>
+        <div class="P_row">
+          <span class="P_dot P_dy" style="margin-top:2px"></span>
+          <div class="P_rowinfo"><span class="P_rowh">Team Bottleneck</span></div>
+          <span class="P_bdg P_bdgy">29%</span>
+        </div>
+        <div class="P_row">
+          <span class="P_dot P_db" style="margin-top:2px"></span>
+          <div class="P_rowinfo"><span class="P_rowh">Code Complexity</span></div>
+          <span class="P_bdg P_bdgb">21%</span>
+        </div>
+        <div class="P_row">
+          <span class="P_dot P_dg" style="margin-top:2px"></span>
+          <div class="P_rowinfo"><span class="P_rowh">Dependency Issues</span></div>
+          <span class="P_bdg P_bdgg">12%</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 4 metric tiles -->
+  <div class="P_grid4">
+    <div class="P_mtile P_mt-r" style="animation-delay:0.15s">
+      <div class="P_mttop">Sprint Velocity Drop</div>
+      <div class="P_mtval">−22<span style="font-size:1rem;color:var(--P-text2)">%</span></div>
+      <div class="P_mtsub">vs last sprint average</div>
+    </div>
+    <div class="P_mtile P_mt-y" style="animation-delay:0.18s">
+      <div class="P_mttop">Overdue Issues</div>
+      <div class="P_mtval">6</div>
+      <div class="P_mtsub">Past target date · 2 critical</div>
+    </div>
+    <div class="P_mtile P_mt-r" style="animation-delay:0.21s">
+      <div class="P_mttop">Bus Factor</div>
+      <div class="P_mtval">1.4</div>
+      <div class="P_mtsub">alex.k owns 38% of commits</div>
+    </div>
+    <div class="P_mtile P_mt-y" style="animation-delay:0.24s">
+      <div class="P_mttop">Days to Deadline</div>
+      <div class="P_mtval">11</div>
+      <div class="P_mtsub">v2.4 release · 6 blockers open</div>
+    </div>
+  </div>
+
+  <!-- Risk factors + bottlenecks -->
+  <div class="P_grid2">
+
+    <div class="P_card" style="animation-delay:0.26s">
+      <div class="P_cardtitle">🔥 Active Risk Factors</div>
+
+      <div class="P_row">
+        <span class="P_rowico">⏰</span>
+        <div class="P_rowinfo">
+          <span class="P_rowh">Deadline Pressure — v2.4 Release</span>
+          <span class="P_rowt">6 open blockers with 11 days remaining. Sprint velocity is 22% below target.</span>
+        </div>
+        <span class="P_bdg P_bdgr">Critical</span>
+      </div>
+      <div class="P_row">
+        <span class="P_rowico">👤</span>
+        <div class="P_rowinfo">
+          <span class="P_rowh">Single Point of Failure — payments/</span>
+          <span class="P_rowt">Only alex.k has committed to payments/ in 30 days. Risk if unavailable.</span>
+        </div>
+        <span class="P_bdg P_bdgr">Critical</span>
+      </div>
+      <div class="P_row">
+        <span class="P_rowico">📈</span>
+        <div class="P_rowinfo">
+          <span class="P_rowh">Auth Module Issue Spike</span>
+          <span class="P_rowt">+14 new issues in auth/ over 48h — possible regression after recent refactor.</span>
+        </div>
+        <span class="P_bdg P_bdgr">Critical</span>
+      </div>
+      <div class="P_row">
+        <span class="P_rowico">🔀</span>
+        <div class="P_rowinfo">
+          <span class="P_rowh">PR Review Slowdown</span>
+          <span class="P_rowt">Average review time rose to 2.4 days. 11 PRs blocked for 4+ days.</span>
+        </div>
+        <span class="P_bdg P_bdgy">Warning</span>
+      </div>
+      <div class="P_row">
+        <span class="P_rowico">📦</span>
+        <div class="P_rowinfo">
+          <span class="P_rowh">Outdated Dependencies</span>
+          <span class="P_rowt">8 npm packages are 2+ major versions behind with known CVEs.</span>
+        </div>
+        <span class="P_bdg P_bdgy">Warning</span>
+      </div>
+    </div>
+
+    <div class="P_card" style="animation-delay:0.29s">
+      <div class="P_cardhd">
+        <span class="P_cardtitle">🏎️ Team Bottlenecks</span>
+        <span class="P_pill2">Current sprint</span>
+      </div>
+      <div class="P_chbox-lg"><canvas id="bottleneckChart"></canvas></div>
+    </div>
+
+  </div>
+
+  <!-- AI mitigation -->
+  <div class="P_card" style="animation-delay:0.32s">
+    <div class="P_cardtitle">🤖 AI Mitigation Suggestions</div>
+    <div class="P_row">
+      <span class="P_rowico">🔁</span>
+      <div class="P_rowinfo"><span class="P_rowh">Redistribute payments/ ownership immediately</span><span class="P_rowt">Pair Dev Patel with alex.k this sprint to share the payments/ context. Estimated 1-day ramp-up.</span></div>
+      <a href="developer-recommendation.html" class="P_btn" style="font-size:0.75rem;padding:0.35rem 0.8rem">Assign →</a>
+    </div>
+    <div class="P_row">
+      <span class="P_rowico">📌</span>
+      <div class="P_rowinfo"><span class="P_rowh">Scope cut: defer 3 low-priority issues from v2.4</span><span class="P_rowt">AI identified ISS-271, ISS-279, ISS-284 as safe to defer — low user impact, no dependency blockers.</span></div>
+      <a href="issues.html" class="P_btn" style="font-size:0.75rem;padding:0.35rem 0.8rem">View Issues →</a>
+    </div>
+    <div class="P_row">
+      <span class="P_rowico">🕐</span>
+      <div class="P_rowinfo"><span class="P_rowh">Set a daily 30-min PR review window for the team</span><span class="P_rowt">Unblocking 11 stalled PRs would recover approx. 3 days of blocked dev time before the deadline.</span></div>
+      <span class="P_bdg P_bdgy">Recommended</span>
+    </div>
+  </div>
+
+</main>
+
+<link rel="stylesheet" href="css/pages.css"/>
+<script src="js/pages.js"></script>
+<script>
+/* Risk trend */
+new Chart(document.getElementById('riskTrendChart'), {
+  type: 'line',
+  data: {
+    labels: [...daysLabels(7), ...daysLabels(14).slice(7).map(l => l + ' (proj)')],
+    datasets: [{
+      label: 'Actual Risk Score',
+      data: [42,45,48,51,53,55,58,null,null,null,null,null,null,null],
+      borderColor: '#ee4466', borderWidth: 2.5, tension: 0.4, pointRadius: 3,
+      fill: true, backgroundColor: (ctx) => grad(ctx.chart.ctx, 'rgba(238,68,102,0.18)', 'rgba(238,68,102,0)')
+    },{
+      label: 'AI Projection',
+      data: [null,null,null,null,null,null,58,63,67,70,66,61,56,52],
+      borderColor: '#f5a623', borderWidth: 2, borderDash: [6,3], tension: 0.4, pointRadius: 0, fill: false
+    }]
+  },
+  options: baseOpts({ scales: { y: { min:20, max:90, grid:{color:gridClr()}, ticks:{color:lblClr(),font:{family:'Inter',size:10}} }, x: { grid:{color:gridClr()}, ticks:{color:lblClr(),font:{family:'Inter',size:10},maxRotation:30} } } })
+});
+
+/* Risk donut */
+new Chart(document.getElementById('riskDonut'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Deadline','Bottleneck','Complexity','Dependencies'],
+    datasets: [{ data: [38,29,21,12], backgroundColor: ['#ee4466','#f5a623','#5a54ee','#1dc998'], borderWidth: 0, hoverOffset: 6 }]
+  },
+  options: { ...noScaleOpts(), cutout: '68%' }
+});
+
+/* Bottleneck chart — horizontal bar */
+new Chart(document.getElementById('bottleneckChart'), {
+  type: 'bar',
+  data: {
+    labels: ['alex.k','sara.l','dev.p','priya.m','omar.r','lisa.w'],
+    datasets: [{
+      label: 'Open Tasks', data: [14,8,7,6,5,4],
+      backgroundColor: ['rgba(238,68,102,0.75)','rgba(245,166,35,0.7)','rgba(90,84,238,0.7)','rgba(0,201,190,0.7)','rgba(29,201,152,0.7)','rgba(155,89,182,0.7)'],
+      borderRadius: 5,
+    }]
+  },
+  options: { ...baseOpts(), indexAxis: 'y',
+    scales: { x: { grid:{color:gridClr()}, ticks:{color:lblClr(),font:{family:'Inter',size:10}} }, y: { grid:{color:'transparent'}, ticks:{color:lblClr(),font:{family:'Inter',size:10}} } }
+  }
+});
+
+document.getElementById('refreshBtn').addEventListener('click', function() {
+  this.textContent = '⏳ Analyzing…';
+  setTimeout(() => { this.textContent = '🔄 Refresh AI'; }, 1500);
+});
+</script>
+</body>
+</html>

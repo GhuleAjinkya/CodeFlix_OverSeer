@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard | OVERSEER</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <!--
+    ⚠️  dashboard.css is injected via JS into a <style> tag so it loads
+    AFTER style.css and wins every specificity battle cleanly.
+  -->
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════
+       NAVBAR
+  ═══════════════════════════════════════ -->
+  <header class="D_nb">
+    <span class="D_logo">OVERSEER</span>
+    <div class="D_nbr">
+      <!-- Searchable Repo Selector -->
+      <div class="D_rswrap" id="repoSelectorWrap">
+        <div class="D_rsinput" id="repoInputBox">
+          <svg class="D_rsicon" viewBox="0 0 20 20" fill="none">
+            <circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M13.5 13.5L17 17" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+          <span class="D_rschosen" id="repoChosen">project-intelligence / main</span>
+          <svg class="D_rschev" id="repoChev" viewBox="0 0 10 6" fill="none">
+            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <div class="D_rsdrop" id="repoDropdown">
+          <div class="D_rssearch">
+            <svg class="D_rssico" viewBox="0 0 20 20" fill="none">
+              <circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M13.5 13.5L17 17" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+            <input class="D_rsinp" id="repoSearchInput" type="text" placeholder="Search repositories…" autocomplete="off" spellcheck="false"/>
+            <button class="D_rsclr" id="repoSearchClear" title="Clear">✕</button>
+          </div>
+          <div class="D_rslist" id="repoList"></div>
+          <div class="D_rsempty" id="repoEmpty">No repositories found</div>
+        </div>
+      </div>
+      <button class="D_tbtn" id="themeToggle">🌙</button>
+      <div class="D_pfwrap">
+        <div class="D_av" id="avatarBtn">VA</div>
+        <div class="D_dd" id="profileDropdown">
+          <div class="D_ddhd">
+            <div class="D_ddav">VA</div>
+            <div>
+              <span class="D_ddname">Vastav Araj</span>
+              <span class="D_ddemail">arajvastav@gmail.com</span>
+            </div>
+          </div>
+          <div class="D_ddsep"></div>
+          <a href="#"          class="D_ddlink">⚙️&nbsp; Settings</a>
+          <a href="#"          class="D_ddlink">👤&nbsp; My Profile</a>
+          <div class="D_ddsep"></div>
+          <a href="login.html" class="D_ddlink D_ddout">🚪&nbsp; Logout</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════
+       PAGE
+  ═══════════════════════════════════════ -->
+  <main class="D_pg">
+
+    <!-- SUMMARY CARDS -->
+    <div class="D_cards">
+
+      <div class="D_sc D_sc1">
+        <div class="D_sctop">
+          <span class="D_sclbl">Project Health</span>
+          <span class="D_bdg D_bdgg">↑ +4</span>
+        </div>
+        <div class="D_scmid">
+          <div class="D_ring">
+            <svg width="56" height="56" viewBox="0 0 56 56">
+              <circle class="D_rbg" cx="28" cy="28" r="23"/>
+              <circle class="D_rfg" cx="28" cy="28" r="23" id="healthRing"/>
+            </svg>
+            <span class="D_rnum">80</span>
+          </div>
+          <span class="D_scval">Good</span>
+        </div>
+        <span class="D_scsub">Last analyzed 3 min ago</span>
+      </div>
+
+      <div class="D_sc D_sc2">
+        <div class="D_sctop">
+          <span class="D_sclbl">Risk Level</span>
+          <span class="D_bdg D_bdgw">Review</span>
+        </div>
+        <div class="D_scmid">
+          <div class="D_ico D_icor">⚠️</div>
+          <span class="D_scval D_warnclr">Medium</span>
+        </div>
+        <span class="D_scsub">3 active risk factors</span>
+      </div>
+
+      <div class="D_sc D_sc3">
+        <div class="D_sctop">
+          <span class="D_sclbl">Active Devs</span>
+          <span class="D_bdg D_bdgg">↑ +2</span>
+        </div>
+        <div class="D_scmid">
+          <div class="D_ico D_icog">👥</div>
+          <span class="D_scval">12</span>
+        </div>
+        <span class="D_scsub">+2 this sprint</span>
+      </div>
+
+      <div class="D_sc D_sc4">
+        <div class="D_sctop">
+          <span class="D_sclbl">Open Issues</span>
+          <span class="D_bdg D_bdgr">↑ +5</span>
+        </div>
+        <div class="D_scmid">
+          <div class="D_ico D_icoy">🐛</div>
+          <span class="D_scval">47</span>
+        </div>
+        <span class="D_scsub">8 high priority</span>
+      </div>
+
+    </div>
+
+    <!-- BODY: charts + sidebar -->
+    <div class="D_body">
+
+      <!-- CHARTS GRID -->
+      <div class="D_cgrid">
+
+        <div class="D_cc">
+          <div class="D_cchd">
+            <span class="D_cctitle">📈 Commit Activity</span>
+            <span class="D_ccpill">Last 14 days</span>
+          </div>
+          <div class="D_ccbox"><canvas id="commitChart"></canvas></div>
+        </div>
+
+        <div class="D_cc">
+          <div class="D_cchd">
+            <span class="D_cctitle">📋 Issue Trend</span>
+            <span class="D_ccpill">Last 14 days</span>
+          </div>
+          <div class="D_ccbox"><canvas id="issueChart"></canvas></div>
+        </div>
+
+        <div class="D_cc">
+          <div class="D_cchd">
+            <span class="D_cctitle">🔀 PR Aging</span>
+            <span class="D_ccpill">Open PRs</span>
+          </div>
+          <div class="D_ccbox"><canvas id="prChart"></canvas></div>
+        </div>
+
+        <div class="D_cc">
+          <div class="D_cchd">
+            <span class="D_cctitle">👤 Dev Workload</span>
+            <span class="D_ccpill">This sprint</span>
+          </div>
+          <div class="D_ccbox"><canvas id="devChart"></canvas></div>
+        </div>
+
+      </div>
+
+      <!-- SIDEBAR -->
+      <aside class="D_sb">
+
+        <!-- AI Insights -->
+        <div class="D_sbc">
+          <div class="D_sbtitle">
+            <span class="D_dot"></span>AI Insights
+          </div>
+
+          <div class="D_ins">
+            <span class="D_insico">⚠️</span>
+            <div class="D_insbody">
+              <span class="D_insh">Risk Alert: Deadline Pressure</span>
+              <span class="D_inst">Sprint velocity dropped 22% — 6 issues may miss the release window.</span>
+              <span class="D_tg D_tgr">High Risk</span>
+            </div>
+          </div>
+
+          <div class="D_ins">
+            <span class="D_insico">📊</span>
+            <div class="D_insbody">
+              <span class="D_insh">Developer Imbalance</span>
+              <span class="D_inst">@alex.k holds 38% of commits. Bus factor risk is elevated.</span>
+              <span class="D_tg D_tgw">Warning</span>
+            </div>
+          </div>
+
+          <div class="D_ins">
+            <span class="D_insico">📈</span>
+            <div class="D_insbody">
+              <span class="D_insh">Issue Spike — Auth Module</span>
+              <span class="D_inst">+14 issues in auth module over 48h. Code review recommended.</span>
+              <span class="D_tg D_tgb">Info</span>
+            </div>
+          </div>
+
+          <div class="D_ins">
+            <span class="D_insico">🔍</span>
+            <div class="D_insbody">
+              <span class="D_insh">Knowledge Gap: payments/</span>
+              <span class="D_inst">Only 1 developer touched payments/ in the last 30 days.</span>
+              <span class="D_tg D_tgw">Warning</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Activity Feed -->
+        <div class="D_sbc">
+          <div class="D_sbtitle">
+            <span class="D_dot D_dotg"></span>Repository Activity
+          </div>
+          <div id="activityFeed"></div>
+        </div>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <link rel="stylesheet" href="css/dashboard.css"/>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Developer Recommendation | OVERSEER</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- ═══════════ NAVBAR ═══════════ -->
+  <header class="R_nb">
+    <span class="R_logo">OVERSEER</span>
+    <nav class="R_navlinks">
+      <a href="dashboard.html"                class="R_navlink">Dashboard</a>
+      <a href="developer-recommendation.html" class="R_navlink R_navactive">Dev Recommendation</a>
+    </nav>
+    <div class="R_nbr">
+      <button class="R_tbtn" id="themeToggle">🌙</button>
+      <div id="notifBellMount"></div>
+      <div class="R_pfwrap">
+        <div class="R_av" id="avatarBtn">VA</div>
+        <div class="R_dd" id="profileDropdown">
+          <div class="R_ddhd">
+            <div class="R_ddav">VA</div>
+            <div>
+              <span class="R_ddname">Vastav Araj</span>
+              <span class="R_ddemail"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f6979a938ed89db68684999c9395829f9882939ad8979f">[email&#160;protected]</a></span>
+            </div>
+          </div>
+          <div class="R_ddsep"></div>
+          <a href="#"          class="R_ddlink">⚙️&nbsp; Settings</a>
+          <a href="#"          class="R_ddlink">👤&nbsp; My Profile</a>
+          <div class="R_ddsep"></div>
+          <a href="login.html" class="R_ddlink R_ddout">🚪&nbsp; Logout</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════ PAGE ═══════════ -->
+  <main class="R_pg">
+
+    <!-- PAGE HEADER -->
+    <div class="R_phd">
+      <div>
+        <h1 class="R_ptitle">🤖 AI Developer Recommendation</h1>
+        <p class="R_psub">AI analyses commit history, file ownership &amp; expertise to suggest the best developer for each open issue.</p>
+      </div>
+      <div class="R_phdright">
+        <div class="R_statpill">
+          <span class="R_statdot"></span>
+          <span>12 open issues</span>
+        </div>
+        <button class="R_refreshbtn" id="refreshBtn">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M1 7a6 6 0 1 0 1.2-3.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M1 3.4V7h3.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Refresh AI
+        </button>
+      </div>
+    </div>
+
+    <!-- FILTER BAR -->
+    <div class="R_filters">
+      <div class="R_searchbox">
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none">
+          <circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M13.5 13.5L17 17" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        <input class="R_searchinp" id="issueSearch" type="text" placeholder="Search issues…" autocomplete="off"/>
+      </div>
+      <div class="R_filterbtngroup" id="priorityFilters">
+        <button class="R_fbtn R_fbtnactive" data-filter="all">All</button>
+        <button class="R_fbtn" data-filter="critical">🔴 Critical</button>
+        <button class="R_fbtn" data-filter="high">🟠 High</button>
+        <button class="R_fbtn" data-filter="medium">🟡 Medium</button>
+        <button class="R_fbtn" data-filter="low">🟢 Low</button>
+      </div>
+    </div>
+
+    <!-- ISSUES LIST -->
+    <div class="R_issues" id="issuesList"></div>
+
+  </main>
+
+  <!-- ═══════════ ASSIGN MODAL ═══════════ -->
+  <div class="R_modaloverlay" id="modalOverlay">
+    <div class="R_modal" id="modal">
+      <div class="R_modalhd">
+        <span class="R_modaltitle" id="modalTitle">Assign Developer</span>
+        <button class="R_modalclose" id="modalClose">✕</button>
+      </div>
+      <div class="R_modalbody" id="modalBody"></div>
+      <div class="R_modalfoot">
+        <button class="R_cancelbtn" id="modalCancel">Cancel</button>
+        <button class="R_assignbtn" id="modalConfirm">✓ Confirm Assignment</button>
+      </div>
+    </div>
+  </div>
+
+    <!-- Toast -->
+  <div class="R_toast" id="toast"></div>
+
+  <link rel="stylesheet" href="css/recomndation.css"/>
+  <link rel="stylesheet" href="css/notif-bell.css"/>
+  <script src="js/notifications.js"></script>
+  <script src="js/notif-bell.js"></script>
+  <script src="js/recomndation.js"></script>
+  <script>
+    mountNotifBell(document.getElementById('notifBellMount'), 'manager');
+  </script>
+</body>
+</html>

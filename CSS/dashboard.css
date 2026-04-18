@@ -1,0 +1,362 @@
+/* ================================================================
+   dashboard.css  —  AI Project Intelligence
+   Prefixed D_ — loaded at </body> to override style.css
+   ================================================================ */
+
+/* ── Hard Base Reset ── */
+html { background: #0c0e15 !important; height: 100% !important; }
+body {
+  background:     #0c0e15        !important;
+  color:          #e8eaf2        !important;
+  font-family:    'Inter', sans-serif !important;
+  font-size:      14px           !important;
+  line-height:    1.5            !important;
+  height:         100%           !important;
+  min-height:     100vh          !important;
+  display:        flex           !important;
+  flex-direction: column         !important;
+  margin:         0              !important;
+  padding:        0              !important;
+  box-sizing:     border-box     !important;
+}
+body.D_lm { background: #f0f2f9 !important; color: #181b2c !important; }
+
+/* ── Design Tokens ── */
+:root {
+  --D-bg:      #0c0e15;
+  --D-bg2:     #10131c;
+  --D-bg3:     #181d28;
+  --D-card:    #141720;
+  --D-card2:   #1c2130;
+  --D-border:  rgba(255,255,255,0.08);
+  --D-accent:  #5a54ee;
+  --D-teal:    #00c9be;
+  --D-text:    #e8eaf2;
+  --D-text2:   #7880a0;
+  --D-text3:   #40466a;
+  --D-green:   #1dc998;
+  --D-warn:    #f5a623;
+  --D-red:     #ee4466;
+  --D-r:       13px;
+  --D-ease:    0.2s ease;
+}
+body.D_lm {
+  --D-bg:     #f0f2f9; --D-bg2:   #e6e9f4; --D-bg3:   #dce0ef;
+  --D-card:   #ffffff; --D-card2: #f3f5fc; --D-border: rgba(0,0,0,0.08);
+  --D-text:   #181b2c; --D-text2: #4a5270; --D-text3:  #9098b5;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar       { width: 5px !important; }
+::-webkit-scrollbar-track { background: transparent !important; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1) !important; border-radius: 4px !important; }
+
+/* ================================================================
+   NAVBAR
+   ================================================================ */
+.D_nb {
+  display: flex !important; align-items: center !important;
+  justify-content: space-between !important;
+  height: 62px !important; padding: 0 2rem !important;
+  background: var(--D-bg2) !important;
+  border-bottom: 1px solid var(--D-border) !important;
+  position: sticky !important; top: 0 !important;
+  z-index: 900 !important; width: 100% !important;
+  flex-shrink: 0 !important; box-sizing: border-box !important;
+}
+.D_logo {
+  font-family: 'Manrope', sans-serif !important; font-weight: 800 !important;
+  font-size: 1.05rem !important; letter-spacing: -0.02em !important;
+  background: linear-gradient(120deg, var(--D-accent), var(--D-teal)) !important;
+  -webkit-background-clip: text !important; -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+.D_nbr { display: flex !important; align-items: center !important; gap: 0.7rem !important; }
+
+.D_tbtn {
+  width: 38px !important; height: 38px !important; border-radius: 9px !important;
+  background: var(--D-card2) !important; border: 1px solid var(--D-border) !important;
+  cursor: pointer !important; font-size: 1.1rem !important;
+  display: flex !important; align-items: center !important; justify-content: center !important;
+  transition: border-color var(--D-ease) !important; padding: 0 !important;
+  line-height: 1 !important; flex-shrink: 0 !important;
+}
+.D_tbtn:hover { border-color: var(--D-accent) !important; }
+
+/* ── Avatar ── */
+.D_pfwrap { position: relative !important; flex-shrink: 0 !important; }
+.D_av {
+  width: 38px !important; height: 38px !important; border-radius: 50% !important;
+  background: linear-gradient(135deg, var(--D-accent), var(--D-teal)) !important;
+  color: #fff !important; font-family: 'Manrope', sans-serif !important;
+  font-weight: 700 !important; font-size: 0.8rem !important;
+  display: flex !important; align-items: center !important; justify-content: center !important;
+  cursor: pointer !important; user-select: none !important;
+  border: 2px solid transparent !important; transition: box-shadow var(--D-ease) !important;
+  flex-shrink: 0 !important;
+}
+.D_av:hover { box-shadow: 0 0 0 3px rgba(90,84,238,0.3) !important; }
+
+/* ── Profile Dropdown ── */
+.D_dd {
+  position: absolute !important; top: calc(100% + 10px) !important; right: 0 !important;
+  width: 230px !important; background: var(--D-card2) !important;
+  border: 1px solid var(--D-border) !important; border-radius: 16px !important;
+  padding: 8px !important; box-shadow: 0 20px 50px rgba(0,0,0,0.5) !important;
+  z-index: 9999 !important; opacity: 0 !important;
+  transform: translateY(-10px) scale(0.97) !important;
+  pointer-events: none !important; transition: opacity 0.2s, transform 0.2s !important;
+}
+.D_dd.open { opacity: 1 !important; transform: translateY(0) scale(1) !important; pointer-events: all !important; }
+.D_ddhd { display: flex !important; align-items: center !important; gap: 0.7rem !important; padding: 0.65rem 0.75rem !important; }
+.D_ddav {
+  width: 36px !important; height: 36px !important; border-radius: 50% !important;
+  background: linear-gradient(135deg, var(--D-accent), var(--D-teal)) !important;
+  color: #fff !important; font-family: 'Manrope', sans-serif !important;
+  font-weight: 700 !important; font-size: 0.76rem !important;
+  display: flex !important; align-items: center !important; justify-content: center !important;
+  flex-shrink: 0 !important;
+}
+.D_ddname  { font-family: 'Manrope', sans-serif !important; font-weight: 700 !important; font-size: 0.88rem !important; color: var(--D-text) !important; display: block !important; margin: 0 !important; }
+.D_ddemail { font-size: 0.72rem !important; color: var(--D-text3) !important; display: block !important; margin-top: 2px !important; }
+.D_ddsep   { height: 1px !important; background: var(--D-border) !important; margin: 4px 2px !important; }
+.D_ddlink  { display: flex !important; align-items: center !important; gap: 0.5rem !important; padding: 0.52rem 0.8rem !important; border-radius: 9px !important; font-size: 0.84rem !important; color: var(--D-text2) !important; text-decoration: none !important; transition: background var(--D-ease), color var(--D-ease) !important; }
+.D_ddlink:hover { background: var(--D-bg3) !important; color: var(--D-text) !important; }
+.D_ddout        { color: var(--D-red) !important; }
+.D_ddout:hover  { background: rgba(238,68,102,0.1) !important; color: var(--D-red) !important; }
+
+/* ================================================================
+   PAGE WRAPPER
+   ================================================================ */
+.D_pg {
+  flex: 1 !important; display: flex !important; flex-direction: column !important;
+  gap: 1.4rem !important; padding: 1.75rem 2rem 2rem !important;
+  width: 100% !important; max-width: 1700px !important; margin: 0 auto !important;
+  box-sizing: border-box !important;
+}
+
+/* ================================================================
+   SUMMARY CARDS
+   ================================================================ */
+.D_cards {
+  display: grid !important; grid-template-columns: repeat(4, 1fr) !important;
+  gap: 1.1rem !important; flex-shrink: 0 !important;
+}
+.D_sc {
+  background: var(--D-card) !important; border: 1px solid var(--D-border) !important;
+  border-radius: var(--D-r) !important; padding: 1.4rem 1.5rem !important;
+  display: flex !important; flex-direction: column !important; gap: 0.85rem !important;
+  position: relative !important; overflow: hidden !important; box-sizing: border-box !important;
+  transition: transform var(--D-ease), box-shadow var(--D-ease) !important;
+  animation: D_fup 0.4s ease both !important;
+}
+.D_sc::before {
+  content: '' !important; position: absolute !important;
+  top: 0 !important; left: 0 !important; right: 0 !important; height: 3px !important;
+}
+.D_sc:hover { transform: translateY(-3px) !important; box-shadow: 0 10px 30px rgba(0,0,0,0.28) !important; }
+.D_sc1 { animation-delay: 0.05s !important; } .D_sc1::before { background: var(--D-accent) !important; }
+.D_sc2 { animation-delay: 0.10s !important; } .D_sc2::before { background: var(--D-red)    !important; }
+.D_sc3 { animation-delay: 0.15s !important; } .D_sc3::before { background: var(--D-green)  !important; }
+.D_sc4 { animation-delay: 0.20s !important; } .D_sc4::before { background: var(--D-warn)   !important; }
+
+.D_sctop { display: flex !important; justify-content: space-between !important; align-items: center !important; }
+.D_sclbl { font-size: 0.7rem !important; font-weight: 600 !important; text-transform: uppercase !important; letter-spacing: 0.08em !important; color: var(--D-text3) !important; }
+.D_scmid { display: flex !important; align-items: center !important; gap: 0.9rem !important; }
+.D_scval { font-family: 'Manrope', sans-serif !important; font-size: 2.2rem !important; font-weight: 800 !important; letter-spacing: -0.03em !important; color: var(--D-text) !important; line-height: 1 !important; }
+.D_warnclr { color: var(--D-warn) !important; }
+.D_scsub   { font-size: 0.73rem !important; color: var(--D-text3) !important; }
+
+.D_bdg  { font-size: 0.69rem !important; font-weight: 700 !important; font-family: 'Manrope', sans-serif !important; padding: 0.22rem 0.55rem !important; border-radius: 7px !important; white-space: nowrap !important; }
+.D_bdgg { background: rgba(29,201,152,0.15)  !important; color: var(--D-green) !important; }
+.D_bdgw { background: rgba(245,166,35,0.15)  !important; color: var(--D-warn)  !important; }
+.D_bdgr { background: rgba(238,68,102,0.15)  !important; color: var(--D-red)   !important; }
+
+/* Health ring */
+.D_ring { position: relative !important; width: 56px !important; height: 56px !important; flex-shrink: 0 !important; }
+.D_ring svg    { transform: rotate(-90deg) !important; display: block !important; }
+.D_ring circle { fill: none !important; stroke-width: 5 !important; stroke-linecap: round !important; }
+.D_rbg { stroke: var(--D-border) !important; }
+.D_rfg { stroke: var(--D-accent) !important; transition: stroke-dashoffset 1.2s ease !important; }
+.D_rnum { position: absolute !important; inset: 0 !important; display: flex !important; align-items: center !important; justify-content: center !important; font-family: 'Manrope', sans-serif !important; font-weight: 700 !important; font-size: 0.78rem !important; color: var(--D-text) !important; }
+
+/* Card icons */
+.D_ico  { width: 48px !important; height: 48px !important; border-radius: 12px !important; font-size: 1.3rem !important; display: flex !important; align-items: center !important; justify-content: center !important; flex-shrink: 0 !important; }
+.D_icor { background: rgba(238,68,102,0.12) !important; }
+.D_icog { background: rgba(29,201,152,0.12) !important; }
+.D_icoy { background: rgba(245,166,35,0.12) !important; }
+
+/* ================================================================
+   BODY ROW — stretches to fill all remaining page height
+   ================================================================ */
+.D_body {
+  display: grid !important;
+  grid-template-columns: 1fr 330px !important;
+  gap: 1.4rem !important;
+  flex: 1 !important;          /* fills height in the flex column */
+  min-height: 400px !important;
+}
+
+/* ================================================================
+   CHARTS GRID — fills left column fully
+   ================================================================ */
+.D_cgrid {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  grid-template-rows: repeat(2, 1fr) !important;
+  gap: 1.1rem !important;
+}
+
+.D_cc {
+  background: var(--D-card) !important; border: 1px solid var(--D-border) !important;
+  border-radius: var(--D-r) !important; padding: 1.3rem 1.4rem !important;
+  box-sizing: border-box !important; display: flex !important; flex-direction: column !important;
+  transition: box-shadow var(--D-ease) !important;
+  animation: D_fup 0.4s ease both !important; animation-delay: 0.25s !important;
+}
+.D_cc:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.22) !important; }
+.D_cchd { display: flex !important; justify-content: space-between !important; align-items: center !important; margin-bottom: 1rem !important; flex-shrink: 0 !important; }
+.D_cctitle { font-family: 'Manrope', sans-serif !important; font-size: 0.9rem !important; font-weight: 700 !important; color: var(--D-text) !important; }
+.D_ccpill  { font-size: 0.7rem !important; padding: 0.2rem 0.6rem !important; border-radius: 20px !important; background: var(--D-bg3) !important; border: 1px solid var(--D-border) !important; color: var(--D-text3) !important; }
+.D_ccbox   { position: relative !important; flex: 1 !important; min-height: 0 !important; }
+
+/* ================================================================
+   SIDEBAR — matches chart column height, scrolls internally
+   ================================================================ */
+.D_sb {
+  display: flex !important; flex-direction: column !important;
+  gap: 1.1rem !important; overflow-y: auto !important;
+  /* Make sidebar cards grow to fill the sidebar evenly */
+  align-items: stretch !important;
+}
+
+.D_sbc {
+  background: var(--D-card) !important; border: 1px solid var(--D-border) !important;
+  border-radius: var(--D-r) !important; padding: 1.3rem 1.35rem !important;
+  box-sizing: border-box !important;
+  animation: D_fup 0.4s ease both !important; animation-delay: 0.3s !important;
+}
+/* AI Insights card grows to fill; Activity card stays natural height */
+.D_sbc:first-child { flex: 1 !important; }
+
+.D_sbtitle { font-family: 'Manrope', sans-serif !important; font-weight: 700 !important; font-size: 0.9rem !important; color: var(--D-text) !important; display: flex !important; align-items: center !important; gap: 0.5rem !important; margin-bottom: 1rem !important; }
+
+/* Pulse dot */
+.D_dot  { width: 8px !important; height: 8px !important; border-radius: 50% !important; background: var(--D-accent) !important; flex-shrink: 0 !important; display: inline-block !important; animation: D_pulse 2s infinite !important; }
+.D_dotg { background: var(--D-green) !important; }
+
+/* Insight items */
+.D_ins { display: flex !important; gap: 0.75rem !important; padding: 0.8rem !important; border-radius: 10px !important; border: 1px solid transparent !important; margin-bottom: 0.45rem !important; transition: background var(--D-ease), border-color var(--D-ease) !important; cursor: default !important; box-sizing: border-box !important; }
+.D_ins:last-child { margin-bottom: 0 !important; }
+.D_ins:hover { background: var(--D-card2) !important; border-color: var(--D-border) !important; }
+.D_insico  { font-size: 1rem !important; flex-shrink: 0 !important; margin-top: 1px !important; }
+.D_insbody { flex: 1 !important; min-width: 0 !important; display: flex !important; flex-direction: column !important; gap: 0.18rem !important; }
+.D_insh { font-family: 'Manrope', sans-serif !important; font-size: 0.82rem !important; font-weight: 700 !important; color: var(--D-text) !important; line-height: 1.35 !important; display: block !important; margin: 0 !important; }
+.D_inst { font-size: 0.75rem !important; color: var(--D-text2) !important; line-height: 1.5 !important; display: block !important; margin: 0 !important; }
+.D_tg   { display: inline-block !important; font-size: 0.65rem !important; font-weight: 700 !important; font-family: 'Manrope', sans-serif !important; padding: 0.14rem 0.45rem !important; border-radius: 5px !important; margin-top: 0.1rem !important; width: fit-content !important; }
+.D_tgr  { background: rgba(238,68,102,0.13) !important; color: var(--D-red)    !important; }
+.D_tgw  { background: rgba(245,166,35,0.13) !important; color: var(--D-warn)   !important; }
+.D_tgb  { background: rgba(90,84,238,0.13)  !important; color: var(--D-accent) !important; }
+
+/* Activity feed */
+.D_ai { display: flex !important; align-items: flex-start !important; gap: 0.75rem !important; padding: 0.7rem 0 !important; border-bottom: 1px solid var(--D-border) !important; cursor: default !important; box-sizing: border-box !important; transition: padding-left var(--D-ease) !important; }
+.D_ai:last-child { border-bottom: none !important; padding-bottom: 0 !important; }
+.D_ai:hover      { padding-left: 4px !important; }
+.D_aidot { width: 8px !important; height: 8px !important; border-radius: 50% !important; flex-shrink: 0 !important; margin-top: 5px !important; display: block !important; }
+.D_dpr { background: var(--D-accent) !important; box-shadow: 0 0 6px var(--D-accent) !important; }
+.D_dis { background: var(--D-warn)   !important; box-shadow: 0 0 6px var(--D-warn)   !important; }
+.D_dcm { background: var(--D-green)  !important; box-shadow: 0 0 6px var(--D-green)  !important; }
+.D_aitxt { font-size: 0.78rem !important; color: var(--D-text) !important; line-height: 1.45 !important; display: block !important; margin: 0 !important; }
+.D_aitxt strong { font-weight: 600 !important; color: var(--D-text) !important; }
+.D_aitm  { font-size: 0.7rem !important; color: var(--D-text3) !important; display: block !important; margin-top: 2px !important; }
+
+/* ================================================================
+   SEARCHABLE REPO SELECTOR
+   ================================================================ */
+.D_rswrap { position: relative !important; flex-shrink: 0 !important; }
+
+.D_rsinput {
+  display: flex !important; align-items: center !important; gap: 0.45rem !important;
+  height: 38px !important; padding: 0 0.75rem !important;
+  background: var(--D-card2) !important; border: 1px solid var(--D-border) !important;
+  border-radius: 9px !important; cursor: pointer !important;
+  transition: border-color var(--D-ease), box-shadow var(--D-ease) !important;
+  min-width: 200px !important; max-width: 255px !important;
+  box-sizing: border-box !important; user-select: none !important;
+}
+.D_rsinput:hover,
+.D_rswrap.open .D_rsinput { border-color: var(--D-accent) !important; box-shadow: 0 0 0 3px rgba(90,84,238,0.15) !important; }
+.D_rsicon  { width: 15px !important; height: 15px !important; color: var(--D-text3) !important; flex-shrink: 0 !important; }
+.D_rschosen { flex: 1 !important; font-size: 0.82rem !important; font-family: 'Inter', sans-serif !important; color: var(--D-text2) !important; white-space: nowrap !important; overflow: hidden !important; text-overflow: ellipsis !important; }
+.D_rschev  { width: 10px !important; height: 10px !important; color: var(--D-text3) !important; flex-shrink: 0 !important; transition: transform var(--D-ease) !important; }
+.D_rswrap.open .D_rschev { transform: rotate(180deg) !important; }
+
+.D_rsdrop {
+  position: absolute !important; top: calc(100% + 8px) !important; left: 0 !important;
+  width: 300px !important; background: var(--D-card2) !important;
+  border: 1px solid var(--D-border) !important; border-radius: 14px !important;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.45) !important; z-index: 9998 !important;
+  opacity: 0 !important; transform: translateY(-8px) scale(0.97) !important;
+  pointer-events: none !important; transition: opacity 0.18s ease, transform 0.18s ease !important;
+  overflow: hidden !important;
+}
+.D_rswrap.open .D_rsdrop { opacity: 1 !important; transform: translateY(0) scale(1) !important; pointer-events: all !important; }
+
+.D_rssearch { display: flex !important; align-items: center !important; gap: 0.5rem !important; padding: 0.65rem 0.75rem !important; border-bottom: 1px solid var(--D-border) !important; }
+.D_rssico { width: 15px !important; height: 15px !important; color: var(--D-text3) !important; flex-shrink: 0 !important; }
+.D_rsinp  { flex: 1 !important; background: transparent !important; border: none !important; outline: none !important; font-family: 'Inter', sans-serif !important; font-size: 0.83rem !important; color: var(--D-text) !important; padding: 0 !important; margin: 0 !important; line-height: 1.5 !important; }
+.D_rsinp::placeholder { color: var(--D-text3) !important; }
+.D_rsclr  { background: transparent !important; border: none !important; cursor: pointer !important; color: var(--D-text3) !important; font-size: 0.75rem !important; padding: 0 !important; line-height: 1 !important; opacity: 0 !important; transition: opacity 0.15s, color 0.15s !important; flex-shrink: 0 !important; }
+.D_rsclr.visible { opacity: 1 !important; }
+.D_rsclr:hover   { color: var(--D-red) !important; }
+
+.D_rslist { max-height: 240px !important; overflow-y: auto !important; padding: 6px !important; }
+
+.D_rsitem { display: flex !important; align-items: center !important; gap: 0.6rem !important; padding: 0.55rem 0.75rem !important; border-radius: 9px !important; cursor: pointer !important; transition: background 0.15s !important; border: 1px solid transparent !important; box-sizing: border-box !important; }
+.D_rsitem:hover  { background: var(--D-bg3) !important; }
+.D_rsitem.active { background: rgba(90,84,238,0.12) !important; border-color: rgba(90,84,238,0.25) !important; }
+
+.D_rsavatar { width: 30px !important; height: 30px !important; border-radius: 8px !important; display: flex !important; align-items: center !important; justify-content: center !important; font-size: 0.7rem !important; font-weight: 700 !important; font-family: 'Manrope', sans-serif !important; color: #fff !important; flex-shrink: 0 !important; }
+.D_rsinfo  { flex: 1 !important; min-width: 0 !important; }
+.D_rsname  { display: block !important; font-size: 0.82rem !important; font-weight: 600 !important; font-family: 'Manrope', sans-serif !important; color: var(--D-text) !important; white-space: nowrap !important; overflow: hidden !important; text-overflow: ellipsis !important; margin: 0 !important; }
+.D_rsname mark { background: rgba(90,84,238,0.22) !important; color: var(--D-accent) !important; border-radius: 2px !important; }
+.D_rsbranch { display: block !important; font-size: 0.69rem !important; color: var(--D-text3) !important; margin-top: 1px !important; }
+.D_rscheck  { width: 16px !important; height: 16px !important; color: var(--D-accent) !important; flex-shrink: 0 !important; opacity: 0 !important; }
+.D_rsitem.active .D_rscheck { opacity: 1 !important; }
+
+.D_rsempty { display: none !important; padding: 1.2rem !important; text-align: center !important; font-size: 0.8rem !important; color: var(--D-text3) !important; }
+.D_rsempty.show { display: block !important; }
+
+/* ================================================================
+   ANIMATIONS
+   ================================================================ */
+@keyframes D_fup {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes D_pulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.4; transform: scale(1.35); }
+}
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+@media (max-width: 1250px) {
+  .D_body  { grid-template-columns: 1fr !important; flex: none !important; }
+  .D_cgrid { grid-template-rows: auto !important; }
+  .D_ccbox { height: 185px !important; flex: none !important; }
+  .D_sb    { display: grid !important; grid-template-columns: 1fr 1fr !important; overflow-y: visible !important; }
+  .D_sbc:first-child { flex: none !important; }
+}
+@media (max-width: 960px) {
+  .D_cards { grid-template-columns: repeat(2, 1fr) !important; }
+  .D_cgrid { grid-template-columns: 1fr !important; }
+  .D_sb    { grid-template-columns: 1fr !important; }
+}
+@media (max-width: 560px) {
+  .D_cards   { grid-template-columns: 1fr !important; }
+  .D_pg      { padding: 1rem !important; }
+  .D_nb      { padding: 0 1rem !important; }
+  .D_rsinput { display: none !important; }
+}
