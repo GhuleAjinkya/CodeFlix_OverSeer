@@ -211,3 +211,4 @@ __marimo__/
 risk_prediction.ipynb
 issue_classification.ipynb
 project_health_score.ipynb
+.env.example

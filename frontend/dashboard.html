@@ -6,6 +6,7 @@
   <title>Dashboard | OVERSEER</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
   <!--
     ⚠️  dashboard.css is injected via JS into a <style> tag so it loads
     AFTER style.css and wins every specificity battle cleanly.
@@ -16,8 +17,12 @@
   <!-- ═══════════════════════════════════════
        NAVBAR
   ═══════════════════════════════════════ -->
-  <header class="D_nb">
+  <header class="D_nb" style="justify-content: flex-start; gap: 24px;">
     <span class="D_logo">OVERSEER</span>
+    <nav style="display: flex; gap: 8px; font-weight: 600; font-size: 14px; margin-right: auto;">
+      <a href="dashboard.html" style="color: #fff; background: rgba(255,255,255,0.1); border-radius: 6px; padding: 6px 12px; text-decoration: none;">Dashboard</a>
+      <a href="recomandation.html" style="color: var(--D-fg2); padding: 6px 12px; text-decoration: none; transition: color 0.2s;">Resource Allocator</a>
+    </nav>
     <div class="D_nbr">
       <!-- Searchable Repo Selector -->
       <div class="D_rswrap" id="repoSelectorWrap">
@@ -77,7 +82,7 @@
       <div class="D_sc D_sc1">
         <div class="D_sctop">
           <span class="D_sclbl">Project Health</span>
-          <span class="D_bdg D_bdgg">↑ +4</span>
+          <span class="D_bdg D_bdgg" id="healthBadge"></span>
         </div>
         <div class="D_scmid">
           <div class="D_ring">
@@ -95,37 +100,37 @@
       <div class="D_sc D_sc2">
         <div class="D_sctop">
           <span class="D_sclbl">Risk Level</span>
-          <span class="D_bdg D_bdgw">Review</span>
+          <span class="D_bdg D_bdgw" id="riskBadge">Review</span>
         </div>
         <div class="D_scmid">
           <div class="D_ico D_icor">⚠️</div>
-          <span class="D_scval D_warnclr">Medium</span>
+          <span class="D_scval D_warnclr" id="riskLevelVal">Medium</span>
         </div>
-        <span class="D_scsub">3 active risk factors</span>
+        <span class="D_scsub" id="riskLevelSub">3 active risk factors</span>
       </div>
 
       <div class="D_sc D_sc3">
         <div class="D_sctop">
           <span class="D_sclbl">Active Devs</span>
-          <span class="D_bdg D_bdgg">↑ +2</span>
+          <span class="D_bdg D_bdgg" id="devBadge"></span>
         </div>
         <div class="D_scmid">
           <div class="D_ico D_icog">👥</div>
-          <span class="D_scval">12</span>
+          <span class="D_scval" id="activeDevsVal">-</span>
         </div>
-        <span class="D_scsub">+2 this sprint</span>
+        <span class="D_scsub" id="devSub"></span>
       </div>
 
       <div class="D_sc D_sc4">
         <div class="D_sctop">
           <span class="D_sclbl">Open Issues</span>
-          <span class="D_bdg D_bdgr">↑ +5</span>
+          <span class="D_bdg D_bdgr" id="issueBadge"></span>
         </div>
         <div class="D_scmid">
           <div class="D_ico D_icoy">🐛</div>
-          <span class="D_scval">47</span>
+          <span class="D_scval" id="openIssuesVal">-</span>
         </div>
-        <span class="D_scsub">8 high priority</span>
+        <span class="D_scsub" id="issueSub"></span>
       </div>
 
     </div>
@@ -168,6 +173,24 @@
           <div class="D_ccbox"><canvas id="devChart"></canvas></div>
         </div>
 
+      </div>
+
+      <!-- RISK TIMELINE (GANTT CHART) -->
+      <div class="D_cc" style="margin-top: 24px;">
+        <div class="D_cchd" style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <span class="D_cctitle">⏳ Risk Timeline</span>
+            <span class="D_ccpill">Projected Completion</span>
+          </div>
+          <div style="display: flex; gap: 12px; font-size: 11px; color: var(--D-fg2);">
+            <div style="display: flex; align-items: center; gap: 4px;"><span style="width: 8px; height: 8px; border-radius: 50%; background: #1dc998;"></span>On Track</div>
+            <div style="display: flex; align-items: center; gap: 4px;"><span style="width: 8px; height: 8px; border-radius: 50%; background: #f5a623;"></span>At Risk</div>
+            <div style="display: flex; align-items: center; gap: 4px;"><span style="width: 8px; height: 8px; border-radius: 50%; background: #ee4466;"></span>Delayed</div>
+          </div>
+        </div>
+        <div class="D_ccbox" style="height: 250px;">
+          <canvas id="ganttChart"></canvas>
+        </div>
       </div>
 
       <!-- SIDEBAR -->
@@ -229,7 +252,8 @@
     </div>
   </main>
 
-  <link rel="stylesheet" href="css/dashboard.css"/>
-  <script src="js/dashboard.js"></script>
+  <link rel="stylesheet" href="CSS/dashboard.css"/>
+  <script src="JS/auth.js"></script>
+  <script type="module" src="JS/dashboard.js"></script>
 </body>
 </html>
